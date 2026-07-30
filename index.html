@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TX3 Prime Partners — Top rate from lot one</title>
-<meta name="description" content="TX3 Prime Partners — $23 per lot from your first lot. No depositor thresholds, no qualifying period, volume bonuses on top.">
+<meta name="description" content="TX3 Prime Partners — $23 per lot from your first lot, or Prime CPA with up to $2,000 paid upfront per funded client. Choose the program that fits your traffic.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -37,6 +37,14 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:800;letter-spacing:-.035em;li
 .num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:3px}
+
+/* program switcher */
+.switch{display:inline-flex;border:1px solid rgba(255,255,255,.18);border-radius:99px;padding:4px;margin:0 0 30px;background:rgba(255,255,255,.05)}
+.switch button{font-family:var(--mono);font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:#C6C6CA;background:none;border:0;padding:9px 20px;border-radius:99px;cursor:pointer;transition:background .15s,color .15s}
+.switch button:hover{color:#fff}
+.switch button.on{background:var(--gold);color:#1A1200;font-weight:600}
+body.cpa .v-prime{display:none!important}
+body:not(.cpa) .v-cpa{display:none!important}
 
 /* eyebrow */
 .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:0 0 18px}
@@ -213,7 +221,14 @@ section{padding:86px 0}
 /* terms */
 .terms{columns:2;column-gap:44px}
 .terms li{font-size:13.5px;color:var(--mut-dk);margin:0 0 12px;break-inside:avoid;line-height:1.55}
+.terms-dk li{color:#B9B9BF}
 @media(max-width:700px){.terms{columns:1}}
+
+/* cpa table tweaks */
+.cpa-row .tname{font-family:var(--mono);font-weight:500;font-size:14.5px;color:#D8D8DC}
+.cpa-row .comb{color:var(--gold);font-weight:600}
+.cpa-foot{font-size:13.5px;color:#B9B9BF;margin:22px 0 0;max-width:680px}
+.cbox li b{font-weight:600;color:var(--ink)}
 
 /* final cta */
 .fin{background:
@@ -234,9 +249,12 @@ footer p{margin:0 0 12px;max-width:900px}
   <div class="wrap">
     <div class="brand">TX3 <span>PRIME</span></div>
     <div class="navlinks">
-      <a href="#calc">Run your numbers</a>
-      <a href="#tiers">Tiers</a>
-      <a href="#compare">What changed</a>
+      <a href="#calc" class="v-prime">Run your numbers</a>
+      <a href="#tiers" class="v-prime">Tiers</a>
+      <a href="#compare" class="v-prime">What changed</a>
+      <a href="#cpa-pay" class="v-cpa">Payouts</a>
+      <a href="#cpa-ftd" class="v-cpa">FTD bonus</a>
+      <a href="#cpa-choose" class="v-cpa">Prime vs CPA</a>
       <a href="#apply" class="btn btn-p">Become a partner</a>
     </div>
   </div>
@@ -244,11 +262,45 @@ footer p{margin:0 0 12px;max-width:900px}
 
 <header class="hero">
   <div class="wrap">
-    <p class="eyebrow">TX3 Prime Partners</p>
-    <h1>Top rate.<br><em>From lot one.</em></h1>
-    <p class="lede">No depositor thresholds. No qualifying period. No tier to climb before the rate gets good. <b>Every Prime partner earns our highest per-lot commission from their first lot.</b></p>
+    <div class="switch" role="tablist" aria-label="Choose partner program">
+      <button type="button" id="tabPrime" role="tab" aria-controls="calc" class="on">TX3 Prime</button>
+      <button type="button" id="tabCpa" role="tab" aria-controls="cpa-pay">TX3 Prime CPA</button>
+    </div>
 
-    <div class="ticket">
+    <p class="eyebrow v-prime">TX3 Prime Partners</p>
+    <h1 class="v-prime">Top rate.<br><em>From lot one.</em></h1>
+    <p class="lede v-prime">No depositor thresholds. No qualifying period. No tier to climb before the rate gets good. <b>Every Prime partner earns our highest per-lot commission from their first lot.</b></p>
+
+    <p class="eyebrow v-cpa">TX3 Prime CPA</p>
+    <h1 class="v-cpa">Paid upfront.<br><em>Per funded client.</em></h1>
+    <p class="lede v-cpa">For partners who'd rather be paid on acquisition than on trading activity. <b>Earn a one-time payment for every client who funds an account and starts trading</b> — no waiting on lifetime volume.</p>
+
+    <div class="ticket v-cpa">
+      <div class="tk now">
+        <p class="tk-lbl">How CPA pays</p>
+        <div class="rate">Up to $2,000</div>
+        <p class="note">Per funded client, paid once they deposit and trade the lot minimum within 30 days.</p>
+      </div>
+      <div class="tk prime">
+        <span class="pill"><span class="dot"></span>Live now</span>
+        <div class="tk-rows">
+          <div class="tk-row">
+            <div class="v">$60<i>–$2,000</i></div>
+            <p class="k">Per funded client</p>
+          </div>
+          <div class="tk-row">
+            <div class="v">$12K<i>/mo</i></div>
+            <p class="k">FTD volume bonus</p>
+          </div>
+        </div>
+        <div class="tk-tot">
+          <span class="k">Paid on</span>
+          <span class="v">Direct referrals</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ticket v-prime">
       <div class="tk now">
         <p class="tk-lbl">What most brokers pay</p>
         <div class="rate"><s>$6&ndash;$12</s></div>
@@ -275,13 +327,15 @@ footer p{margin:0 0 12px;max-width:900px}
 
     <div class="hero-cta">
       <a href="#apply" class="btn btn-p btn-lg">Become a partner</a>
-      <a href="#calc" class="btn btn-o btn-lg">Run your numbers</a>
-      <span class="fine">Volume bonuses on top.</span>
+      <a href="#calc" class="btn btn-o btn-lg v-prime">Run your numbers</a>
+      <a href="#cpa-pay" class="btn btn-o btn-lg v-cpa">See the payouts</a>
+      <span class="fine v-prime">Volume bonuses on top.</span>
+      <span class="fine v-cpa">Choose one program at signup — Prime or Prime CPA.</span>
     </div>
   </div>
 </header>
 
-<section id="calc">
+<section id="calc" class="v-prime">
   <div class="wrap">
     <div class="sec-h">
       <p class="eyebrow dk">The calculator</p>
@@ -316,7 +370,7 @@ footer p{margin:0 0 12px;max-width:900px}
   </div>
 </section>
 
-<section id="tiers" class="dark">
+<section id="tiers" class="dark v-prime">
   <div class="wrap">
     <div class="sec-h">
       <p class="eyebrow">Prime tiers</p>
@@ -343,7 +397,7 @@ footer p{margin:0 0 12px;max-width:900px}
   </div>
 </section>
 
-<section>
+<section class="v-prime">
   <div class="wrap">
     <div class="sec-h">
       <p class="eyebrow dk">Deposit milestones</p>
@@ -361,7 +415,7 @@ footer p{margin:0 0 12px;max-width:900px}
   </div>
 </section>
 
-<section id="compare">
+<section id="compare" class="v-prime">
   <div class="wrap">
     <div class="sec-h">
       <p class="eyebrow dk">What changed</p>
@@ -422,7 +476,7 @@ footer p{margin:0 0 12px;max-width:900px}
   </div>
 </section>
 
-<section>
+<section class="v-prime">
   <div class="wrap">
     <div class="sec-h">
       <p class="eyebrow dk">The fine print, in plain language</p>
@@ -442,10 +496,108 @@ footer p{margin:0 0 12px;max-width:900px}
   </div>
 </section>
 
+<section id="cpa-pay" class="dark v-cpa">
+  <div class="wrap">
+    <div class="sec-h">
+      <p class="eyebrow">What you earn</p>
+      <h2>The bigger they fund, the bigger the payout</h2>
+      <p>Payment triggers when your referred client makes their first deposit and trades the minimum lots within 30 days — both conditions must be met.</p>
+    </div>
+
+    <div class="ladder rev">
+      <div class="lrow lhead cpa-head">
+        <div>First-time deposit</div><div>Min lots in 30 days</div><div>CPA payout</div><div>Prime overtakes at</div>
+      </div>
+      <div class="lbody">
+        <div class="lrow cpa-row"><div class="tname"><span class="tchip c-p"></span>$100 – $249</div><div class="num" data-l="Min lots">1 lot</div><div class="num comb" data-l="Payout">$60</div><div class="num" data-l="Prime overtakes">3 lots</div></div>
+        <div class="lrow cpa-row"><div class="tname"><span class="tchip c-p"></span>$250 – $499</div><div class="num" data-l="Min lots">3 lots</div><div class="num comb" data-l="Payout">$250</div><div class="num" data-l="Prime overtakes">11 lots</div></div>
+        <div class="lrow cpa-row"><div class="tname"><span class="tchip c-p"></span>$500 – $999</div><div class="num" data-l="Min lots">5 lots</div><div class="num comb" data-l="Payout">$450</div><div class="num" data-l="Prime overtakes">20 lots</div></div>
+        <div class="lrow cpa-row"><div class="tname"><span class="tchip c-g"></span>$1,000 – $2,499</div><div class="num" data-l="Min lots">9 lots</div><div class="num comb" data-l="Payout">$800</div><div class="num" data-l="Prime overtakes">35 lots</div></div>
+        <div class="lrow cpa-row"><div class="tname"><span class="tchip c-g"></span>$2,500 – $4,999</div><div class="num" data-l="Min lots">16 lots</div><div class="num comb" data-l="Payout">$1,400</div><div class="num" data-l="Prime overtakes">61 lots</div></div>
+        <div class="lrow cpa-row"><div class="tname"><span class="tchip c-d"></span>$5,000+</div><div class="num" data-l="Min lots">24 lots</div><div class="num comb" data-l="Payout">$2,000</div><div class="num" data-l="Prime overtakes">87 lots</div></div>
+      </div>
+    </div>
+    <p class="cpa-foot">Prime CPA pays on direct referrals only. If you need a two-level structure with indirect referrals, TX3 Prime is the program to choose.</p>
+  </div>
+</section>
+
+<section id="cpa-ftd" class="v-cpa">
+  <div class="wrap">
+    <div class="sec-h">
+      <p class="eyebrow dk">Monthly FTD volume bonus</p>
+      <h2>Volume pays on top of every client</h2>
+      <p>Paid every month, based on how many clients qualified that month. Stacks on top of your per-client CPA.</p>
+    </div>
+    <div class="rail rev-kids">
+      <div class="stop"><div class="dep">10 FTDs</div><div class="bon">$250</div></div>
+      <div class="stop"><div class="dep">25 FTDs</div><div class="bon">$750</div></div>
+      <div class="stop"><div class="dep">50 FTDs</div><div class="bon">$2,000</div></div>
+      <div class="stop"><div class="dep">100 FTDs</div><div class="bon">$5,000</div></div>
+      <div class="stop"><div class="dep">200 FTDs</div><div class="bon">$12,000</div></div>
+      <div class="stop"><div class="dep">300+ FTDs</div><div class="bon">Custom</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="cpa-choose" class="v-cpa">
+  <div class="wrap">
+    <div class="sec-h">
+      <p class="eyebrow dk">Prime or Prime CPA</p>
+      <h2>How to choose</h2>
+      <p>Neither program is better in the abstract; it depends on how long your clients stay and how much they trade. The last column above is the honest answer — it's the point at which the same client would have earned you more on Prime than the CPA paid. Short version: if your clients typically trade past roughly 20 lifetime lots, Prime pays more. If your traffic converts fast and churns, CPA pays more, sooner.</p>
+    </div>
+    <div class="cmp rev-kids">
+      <div class="cbox old">
+        <h4>TX3 Prime</h4>
+        <p class="sub">Recurring</p>
+        <ul>
+          <li><span class="mk mk-c">✓</span><span><b>How you're paid</b> — $23 per lot, recurring for life</span></li>
+          <li><span class="mk mk-c">✓</span><span><b>Levels</b> — two: direct + indirect</span></li>
+          <li><span class="mk mk-c">✓</span><span><b>Paid when</b> — every lot your clients trade</span></li>
+          <li><span class="mk mk-c">✓</span><span><b>Scale reward</b> — monthly volume bonus to $24,000</span></li>
+          <li><span class="mk mk-c">✓</span><span><b>Best for</b> — clients who stay and trade</span></li>
+        </ul>
+      </div>
+      <div class="cbox new">
+        <h4>TX3 Prime CPA</h4>
+        <p class="sub">Upfront</p>
+        <ul>
+          <li><span class="mk mk-c">✓</span><span><b>How you're paid</b> — one-time payment per funded client</span></li>
+          <li><span class="mk mk-c">✓</span><span><b>Levels</b> — one: direct only</span></li>
+          <li><span class="mk mk-c">✓</span><span><b>Paid when</b> — client funds and hits the lot minimum</span></li>
+          <li><span class="mk mk-c">✓</span><span><b>Scale reward</b> — monthly FTD bonus to $12,000</span></li>
+          <li><span class="mk mk-c">✓</span><span><b>Best for</b> — high-volume acquisition, fast cash</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark v-cpa">
+  <div class="wrap">
+    <div class="sec-h">
+      <p class="eyebrow">The fine print, in plain language</p>
+      <h2>How we keep this fair</h2>
+      <p>Upfront payments only work when the clients behind them are real. These rules protect the partners producing genuine business.</p>
+    </div>
+    <ul class="terms terms-dk">
+      <li>One CPA per client, ever. A client who closes and reopens an account does not re-qualify.</li>
+      <li>The full CPA is recovered if the client withdraws their qualifying deposit within 90 days.</li>
+      <li>Your election of Prime or Prime CPA is made at signup and applies to every client referred under that agreement. You may switch once per quarter with 30 days' notice; switches are never applied retroactively.</li>
+      <li>Only closed trades placed in the referred client's tracked account within the 30-day window count toward the lot minimum. Round-trip trades with no real market exposure do not count, and PAMM-generated volume does not qualify.</li>
+      <li>Clients must be unique and KYC-verified. Self-referrals and referrals of immediate family qualify only at a minimum $3,000 deposit and 25 lots, and are subject to review.</li>
+      <li>Monthly qualification caps apply at launch: 25 clients in the $100–$249 band, and 10 clients across the top two bands, per partner per month.</li>
+      <li>TX3 Markets may review partner activity and recover payments made on clients later found to be non-genuine.</li>
+    </ul>
+  </div>
+</section>
+
 <div class="fin" id="apply">
   <div class="wrap">
-    <h2>Your network is already trading. Get paid properly&nbsp;for&nbsp;it.</h2>
-    <p>Apply in a few minutes. A Partnership Success Manager for your region will reach out directly.</p>
+    <h2 class="v-prime">Your network is already trading. Get paid properly&nbsp;for&nbsp;it.</h2>
+    <p class="v-prime">Apply in a few minutes. A Partnership Success Manager for your region will reach out directly.</p>
+    <h2 class="v-cpa">Not sure which fits your traffic? We'll run the numbers&nbsp;with&nbsp;you.</h2>
+    <p class="v-cpa">Apply in a few minutes. Your Partnership Success Manager will help you elect Prime or Prime CPA before you commit.</p>
     <a href="https://crm.tx3markets.com/en/auth/sign-up" class="btn btn-p btn-lg">Become a partner</a>
   </div>
 </div>
@@ -454,13 +606,49 @@ footer p{margin:0 0 12px;max-width:900px}
   <div class="wrap">
     <p><strong style="color:#B9B9BF">Risk disclosure.</strong> TX3 Markets Global (PTY) LTD is an Authorised Financial Services Provider licensed and regulated by the Financial Sector Conduct Authority (FSCA) in South Africa (FSP No. 53180). Client accounts are onboarded through TX3 Markets Global LTD, incorporated in Saint Lucia (Reg. No. 2023-00449), also licensed as an International Brokerage and Clearing House by the Mwali International Services Authority of the Union of the Comoros (Licence No. BFX2025154).</p>
     <p>Trading leveraged products such as Forex and Contracts for Difference carries a high level of risk to your capital and may not be suitable for all investors. Past performance is not indicative of future results. Assess your objectives, experience and risk tolerance before trading, and seek independent advice if necessary.</p>
-    <p>All commission rates, bonus figures and calculator outputs shown on this page are illustrative and subject to the TX3 Markets partner terms. Partner earnings depend on genuine client trading activity. TX3 Markets does not provide services to residents of certain restricted jurisdictions.</p>
+    <p>All commission rates, CPA payouts, bonus figures and calculator outputs shown on this page are illustrative and subject to the TX3 Markets partner terms. Rates, qualification criteria and bonus schedules are subject to change. Partner earnings depend on genuine client trading activity. TX3 Markets does not provide services to residents of certain restricted jurisdictions.</p>
     <p style="color:#5A5A5E">© 2026 TX3 Markets. All rights reserved.</p>
   </div>
 </footer>
 
 <script>
 document.documentElement.classList.add('js');
+(function(){
+  // program switcher — Prime / Prime CPA
+  var bPrime = document.getElementById('tabPrime'),
+      bCpa   = document.getElementById('tabCpa');
+
+  function show(prog, push){
+    var isCpa = prog === 'cpa';
+    document.body.classList.toggle('cpa', isCpa);
+    bPrime.classList.toggle('on', !isCpa);
+    bCpa.classList.toggle('on', isCpa);
+    bPrime.setAttribute('aria-selected', String(!isCpa));
+    bCpa.setAttribute('aria-selected', String(isCpa));
+    document.title = isCpa
+      ? 'TX3 Prime CPA — Paid upfront, per funded client'
+      : 'TX3 Prime Partners — Top rate from lot one';
+    if (push && history.replaceState) {
+      history.replaceState(null, '', isCpa ? '?p=cpa' : location.pathname);
+    }
+    // any reveals in the newly shown sections should settle immediately
+    document.querySelectorAll('.rev,.rev-kids').forEach(function(el){
+      var r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('in');
+    });
+  }
+
+  bPrime.addEventListener('click', function(){ show('prime', true); });
+  bCpa.addEventListener('click', function(){ show('cpa', true); });
+
+  // deep link: ?p=cpa or #cpa-* lands straight on the CPA view
+  var wantsCpa = /[?&]p=cpa\b/.test(location.search) || /^#cpa-/.test(location.hash);
+  show(wantsCpa ? 'cpa' : 'prime', false);
+  if (wantsCpa && location.hash) {
+    var t = document.querySelector(location.hash);
+    if (t) setTimeout(function(){ t.scrollIntoView(); }, 0);
+  }
+})();
 (function(){
   // scroll reveals — fade in once when 15% visible
   if ('IntersectionObserver' in window) {
