@@ -173,7 +173,7 @@ section{padding:86px 0}
 
 /* ladder — tier table */
 .ladder{border:1px solid var(--line);border-radius:16px;overflow:hidden}
-.lrow{display:grid;grid-template-columns:1.25fr .95fr .95fr .95fr;align-items:center;padding:0}
+.lrow{display:grid;grid-template-columns:1.3fr 1fr 1fr;align-items:center;padding:0}
 .lrow>div{padding:17px 22px}
 .lhead{background:rgba(255,255,255,.05);border-bottom:1px solid var(--line)}
 .lhead>div{font-family:var(--mono);font-size:10.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--mut);padding-top:14px;padding-bottom:14px}
@@ -236,7 +236,8 @@ section{padding:86px 0}
 .terms-dk li{color:#B9B9BF}
 @media(max-width:700px){.terms{columns:1}}
 
-/* cpa table tweaks */
+/* cpa table tweaks — keeps its own 4-column grid */
+.cpa-head,.cpa-row{grid-template-columns:1.25fr .95fr .95fr .95fr}
 .cpa-row .tname{font-family:var(--mono);font-weight:500;font-size:14.5px;color:#D8D8DC}
 .cpa-row .comb{color:var(--gold);font-weight:600}
 .cpa-foot{font-size:13.5px;color:#B9B9BF;margin:22px 0 0;max-width:680px}
@@ -393,17 +394,17 @@ footer p{margin:0 0 12px;max-width:900px}
 
     <div class="ladder rev">
       <div class="lrow lhead">
-        <div>Tier</div><div>Monthly volume</div><div>Monthly bonus</div><div>Combined per lot</div>
+        <div>Tier</div><div>Monthly volume</div><div>Monthly bonus</div>
       </div>
       <div class="lbody">
-        <div class="lrow"><div class="tname"><span class="tchip c-p"></span>Prime</div><div class="num" data-l="Volume">100 lots</div><div class="num" data-l="Bonus">$100</div><div class="num comb" data-l="Per lot">$24.00</div></div>
-        <div class="lrow"><div class="tname"><span class="tchip c-p"></span>Prime</div><div class="num" data-l="Volume">250 lots</div><div class="num" data-l="Bonus">$300</div><div class="num comb" data-l="Per lot">$24.20</div></div>
-        <div class="lrow"><div class="tname"><span class="tchip c-p"></span>Prime</div><div class="num" data-l="Volume">500 lots</div><div class="num" data-l="Bonus">$750</div><div class="num comb" data-l="Per lot">$24.50</div></div>
-        <div class="lrow"><div class="tname"><span class="tchip c-g"></span>Prime Gold</div><div class="num" data-l="Volume">1,000 lots</div><div class="num" data-l="Bonus">$1,800</div><div class="num comb" data-l="Per lot">$24.80</div></div>
-        <div class="lrow"><div class="tname"><span class="tchip c-g"></span>Prime Gold</div><div class="num" data-l="Volume">2,500 lots</div><div class="num" data-l="Bonus">$5,000</div><div class="num comb" data-l="Per lot">$25.00</div></div>
-        <div class="lrow"><div class="tname"><span class="tchip c-d"></span>Prime Diamond</div><div class="num" data-l="Volume">5,000 lots</div><div class="num" data-l="Bonus">$11,000</div><div class="num comb" data-l="Per lot">$25.20</div></div>
-        <div class="lrow"><div class="tname"><span class="tchip c-d"></span>Prime Diamond</div><div class="num" data-l="Volume">7,500 lots</div><div class="num" data-l="Bonus">$17,250</div><div class="num comb" data-l="Per lot">$25.30</div></div>
-        <div class="lrow"><div class="tname"><span class="tchip c-b"></span>Prime Black</div><div class="num" data-l="Volume">10,000 lots</div><div class="num" data-l="Bonus">$24,000</div><div class="num comb" data-l="Per lot">$25.40</div></div>
+        <div class="lrow"><div class="tname"><span class="tchip c-p"></span>Prime</div><div class="num" data-l="Volume">100 lots</div><div class="num" data-l="Bonus">$100</div></div>
+        <div class="lrow"><div class="tname"><span class="tchip c-p"></span>Prime</div><div class="num" data-l="Volume">250 lots</div><div class="num" data-l="Bonus">$300</div></div>
+        <div class="lrow"><div class="tname"><span class="tchip c-p"></span>Prime</div><div class="num" data-l="Volume">500 lots</div><div class="num" data-l="Bonus">$750</div></div>
+        <div class="lrow"><div class="tname"><span class="tchip c-g"></span>Prime Gold</div><div class="num" data-l="Volume">1,000 lots</div><div class="num" data-l="Bonus">$1,800</div></div>
+        <div class="lrow"><div class="tname"><span class="tchip c-g"></span>Prime Gold</div><div class="num" data-l="Volume">2,500 lots</div><div class="num" data-l="Bonus">$5,000</div></div>
+        <div class="lrow"><div class="tname"><span class="tchip c-d"></span>Prime Diamond</div><div class="num" data-l="Volume">5,000 lots</div><div class="num" data-l="Bonus">$11,000</div></div>
+        <div class="lrow"><div class="tname"><span class="tchip c-d"></span>Prime Diamond</div><div class="num" data-l="Volume">7,500 lots</div><div class="num" data-l="Bonus">$17,250</div></div>
+        <div class="lrow"><div class="tname"><span class="tchip c-b"></span>Prime Black</div><div class="num" data-l="Volume">10,000 lots</div><div class="num" data-l="Bonus">$24,000</div></div>
         <div class="lrow linv"><div class="tname"><span class="tchip c-g"></span>Prime Black · Invitation</div><div class="inv-t">10,000+ lots — custom terms, negotiated directly. We'll come to you.</div></div>
       </div>
     </div>
