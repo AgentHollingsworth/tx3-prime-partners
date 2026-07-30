@@ -156,6 +156,10 @@ section{padding:86px 0}
 .ov .v small{font-family:var(--body);font-size:11.5px;color:var(--mut);font-weight:400;margin-left:5px}
 .cap-note{font-size:11.5px;color:var(--gold);margin:14px 0 0;line-height:1.5;display:none}
 .cap-note.on{display:block}
+.warn-note{font-size:12.5px;color:#FF9B9B;margin:16px 0 0;line-height:1.55;display:none;
+  border-left:2px solid rgba(255,155,155,.5);padding-left:12px}
+.warn-note.on{display:block}
+.warn-note b{color:#fff;font-weight:600}
 .calc-out{padding:32px;background:linear-gradient(160deg,#030304,#1E1E20);color:#fff}
 .ov{display:flex;justify-content:space-between;align-items:baseline;padding:13px 0;border-bottom:1px solid var(--line);gap:16px}
 .ov:first-of-type{padding-top:0}
@@ -534,7 +538,7 @@ footer p{margin:0 0 12px;max-width:900px}
         <div class="fld">
           <label for="cLots">Average lots per client, per month</label>
           <div class="ip"><span>◊</span><input id="cLots" class="num" type="number" min="0" step="1" value="6"></div>
-          <p class="hint">Used only to compare against Prime — it doesn't change your CPA.</p>
+          <p class="hint">Must reach the band's 30-day minimum above, or no CPA is paid.</p>
         </div>
       </div>
       <div class="calc-out">
@@ -543,6 +547,7 @@ footer p{margin:0 0 12px;max-width:900px}
         <div class="ov"><span class="k">Monthly FTD bonus <span id="cFtdName" style="color:var(--gold)">· 25 FTDs</span></span><span class="v num" id="cFtd">$750</span></div>
         <div class="ov hi"><span class="k">Your first month on CPA</span><span class="v num" id="cTotal">$12,000</span></div>
         <div class="ov"><span class="k">Same clients on Prime</span><span class="v num" id="cPrime">$3,450<small>/mo</small></span></div>
+        <p class="warn-note" id="cWarn"></p>
         <p class="calc-note" id="cCross">At 6 lots a month per client, Prime would overtake this CPA in month 4 — and keep paying after that.</p>
         <p class="cap-note" id="cCap"></p>
         <p class="calc-note">Illustrative only. CPA is paid once per client; Prime pays every month for the life of the client. Actual earnings depend on genuine trading activity and the full partner terms.</p>
@@ -798,11 +803,14 @@ document.documentElement.classList.add('js');
     var band = BANDS[bi];
     var lots = Math.max(0, parseFloat($('cLots').value) || 0);
 
+    // no CPA at all unless the client trades the band's minimum within 30 days
+    var meetsMin = lots >= band.min;
+
     // launch qualification caps: 25/mo in the lowest band, 10/mo across the top two
     var cap = null;
     if (bi === 0 && want > 25) cap = 25;
     if (bi >= 4 && want > 10) cap = 10;
-    var qual = cap !== null ? cap : want;
+    var qual = meetsMin ? (cap !== null ? cap : want) : 0;
 
     var payouts = qual * band.pay;
 
@@ -816,7 +824,8 @@ document.documentElement.classList.add('js');
     }
 
     var total = payouts + ftdBonus;
-    var primeMonthly = qual * lots * PRIME_RATE;
+    // Prime pays on every lot traded, qualified for CPA or not
+    var primeMonthly = want * lots * PRIME_RATE;
 
     $('cQual').textContent = qual.toLocaleString('en-US');
     $('cRate').textContent = '· ' + money(band.pay) + ' each';
@@ -828,9 +837,24 @@ document.documentElement.classList.add('js');
     $('cMinLots').textContent = 'Client must trade ' + band.min +
       (band.min === 1 ? ' lot' : ' lots') + ' within 30 days to qualify.';
 
+    // clients trading below the band minimum earn no CPA at all
+    var warn = $('cWarn');
+    if (!meetsMin && want > 0) {
+      warn.innerHTML = '<b>No CPA is paid at this pace.</b> This band requires ' + band.min +
+        (band.min === 1 ? ' lot' : ' lots') + ' within 30 days, and you\'ve entered ' + lots +
+        (lots === 1 ? ' lot' : ' lots') + ' per client. Either these clients trade more, or a lower deposit band ' +
+        'with an easier minimum fits your traffic better. Prime pays from lot one with no minimum.';
+      warn.classList.add('on');
+    } else {
+      warn.classList.remove('on');
+    }
+
     // when does Prime overtake this CPA, at the entered pace?
     var cross = $('cCross');
-    if (lots > 0 && qual > 0) {
+    if (!meetsMin) {
+      cross.textContent = 'Prime has no lot minimum — it pays $' + PRIME_RATE +
+        ' on every lot these clients trade, from the first one.';
+    } else if (lots > 0) {
       var months = Math.ceil(band.cross / lots);
       cross.textContent = 'At ' + lots + (lots === 1 ? ' lot' : ' lots') +
         ' a month per client, Prime would overtake this CPA in month ' + months +
@@ -841,7 +865,7 @@ document.documentElement.classList.add('js');
     }
 
     var capNote = $('cCap');
-    if (cap !== null) {
+    if (cap !== null && meetsMin) {
       capNote.textContent = 'Launch cap applied: ' + cap + ' qualifying clients per month in this band. ' +
         'Your remaining ' + (want - cap) + ' would carry the same rate once caps lift.';
       capNote.classList.add('on');
