@@ -148,6 +148,14 @@ section{padding:86px 0}
 .fld .ip span{font-family:var(--mono);font-size:14px;color:#8A8A8E;padding:0 0 0 13px}
 .fld input{flex:1;border:0;background:transparent;font-family:var(--mono);font-size:19px;font-weight:500;color:var(--ink);padding:12px 13px;width:100%}
 .fld input:focus{outline:0}
+.fld select{flex:1;border:0;background:transparent;font-family:var(--mono);font-size:16px;font-weight:500;color:var(--ink);padding:13px 13px;width:100%;cursor:pointer;appearance:none;
+  background-image:linear-gradient(45deg,transparent 50%,#8A8A8E 50%),linear-gradient(135deg,#8A8A8E 50%,transparent 50%);
+  background-position:calc(100% - 18px) 51%,calc(100% - 13px) 51%;background-size:5px 5px,5px 5px;background-repeat:no-repeat}
+.fld select:focus{outline:0}
+.fld .hint{font-size:11.5px;color:#8A8A8E;margin:7px 0 0;line-height:1.5}
+.ov .v small{font-family:var(--body);font-size:11.5px;color:var(--mut);font-weight:400;margin-left:5px}
+.cap-note{font-size:11.5px;color:var(--gold);margin:14px 0 0;line-height:1.5;display:none}
+.cap-note.on{display:block}
 .calc-out{padding:32px;background:linear-gradient(160deg,#030304,#1E1E20);color:#fff}
 .ov{display:flex;justify-content:space-between;align-items:baseline;padding:13px 0;border-bottom:1px solid var(--line);gap:16px}
 .ov:first-of-type{padding-top:0}
@@ -252,6 +260,7 @@ footer p{margin:0 0 12px;max-width:900px}
       <a href="#calc" class="v-prime">Run your numbers</a>
       <a href="#tiers" class="v-prime">Tiers</a>
       <a href="#compare" class="v-prime">What changed</a>
+      <a href="#cpa-calc" class="v-cpa">Run your numbers</a>
       <a href="#cpa-pay" class="v-cpa">Payouts</a>
       <a href="#cpa-ftd" class="v-cpa">FTD bonus</a>
       <a href="#cpa-choose" class="v-cpa">Prime vs CPA</a>
@@ -496,6 +505,52 @@ footer p{margin:0 0 12px;max-width:900px}
   </div>
 </section>
 
+<section id="cpa-calc" class="v-cpa">
+  <div class="wrap">
+    <div class="sec-h">
+      <p class="eyebrow dk">The CPA calculator</p>
+      <h2>See what your acquisition is worth upfront</h2>
+      <p>Enter what your traffic actually does each month. We'll show what CPA pays you now — and what the same clients would earn on Prime instead.</p>
+    </div>
+
+    <div class="calc rev">
+      <div class="calc-in">
+        <div class="fld">
+          <label for="cClients">How many clients fund per month?</label>
+          <div class="ip"><span>#</span><input id="cClients" class="num" type="number" min="0" step="1" value="25"></div>
+        </div>
+        <div class="fld">
+          <label for="cBand">Typical first-time deposit</label>
+          <div class="ip"><select id="cBand">
+            <option value="0">$100 – $249</option>
+            <option value="1">$250 – $499</option>
+            <option value="2" selected>$500 – $999</option>
+            <option value="3">$1,000 – $2,499</option>
+            <option value="4">$2,500 – $4,999</option>
+            <option value="5">$5,000+</option>
+          </select></div>
+          <p class="hint" id="cMinLots">Client must trade 5 lots within 30 days to qualify.</p>
+        </div>
+        <div class="fld">
+          <label for="cLots">Average lots per client, per month</label>
+          <div class="ip"><span>◊</span><input id="cLots" class="num" type="number" min="0" step="1" value="6"></div>
+          <p class="hint">Used only to compare against Prime — it doesn't change your CPA.</p>
+        </div>
+      </div>
+      <div class="calc-out">
+        <div class="ov"><span class="k">Qualifying clients</span><span class="v num" id="cQual">25</span></div>
+        <div class="ov"><span class="k">CPA payouts <span id="cRate" style="color:var(--gold)">· $450 each</span></span><span class="v num" id="cPayouts">$11,250</span></div>
+        <div class="ov"><span class="k">Monthly FTD bonus <span id="cFtdName" style="color:var(--gold)">· 25 FTDs</span></span><span class="v num" id="cFtd">$750</span></div>
+        <div class="ov hi"><span class="k">Your first month on CPA</span><span class="v num" id="cTotal">$12,000</span></div>
+        <div class="ov"><span class="k">Same clients on Prime</span><span class="v num" id="cPrime">$3,450<small>/mo</small></span></div>
+        <p class="calc-note" id="cCross">At 6 lots a month per client, Prime would overtake this CPA in month 4 — and keep paying after that.</p>
+        <p class="cap-note" id="cCap"></p>
+        <p class="calc-note">Illustrative only. CPA is paid once per client; Prime pays every month for the life of the client. Actual earnings depend on genuine trading activity and the full partner terms.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="cpa-pay" class="dark v-cpa">
   <div class="wrap">
     <div class="sec-h">
@@ -614,6 +669,14 @@ footer p{margin:0 0 12px;max-width:900px}
 <script>
 document.documentElement.classList.add('js');
 (function(){
+  // don't let a page scroll over an input silently change its value
+  document.querySelectorAll('input[type=number],select').forEach(function(el){
+    el.addEventListener('wheel', function(e){
+      if (document.activeElement === el) el.blur();
+    }, {passive:true});
+  });
+})();
+(function(){
   // program switcher — Prime / Prime CPA
   var bPrime = document.getElementById('tabPrime'),
       bCpa   = document.getElementById('tabCpa');
@@ -710,6 +773,86 @@ document.documentElement.classList.add('js');
     $(id).addEventListener('input', calc);
   });
   calc();
+})();
+
+(function(){
+  // CPA calculator
+  var BANDS = [
+    {label:'$100 – $249',   pay:60,   min:1,  cross:3},
+    {label:'$250 – $499',   pay:250,  min:3,  cross:11},
+    {label:'$500 – $999',   pay:450,  min:5,  cross:20},
+    {label:'$1,000 – $2,499',pay:800, min:9,  cross:35},
+    {label:'$2,500 – $4,999',pay:1400,min:16, cross:61},
+    {label:'$5,000+',       pay:2000, min:24, cross:87}
+  ];
+  // monthly FTD volume bonus — [clients, bonus]
+  var FTD = [[300,null],[200,12000],[100,5000],[50,2000],[25,750],[10,250]];
+  var PRIME_RATE = 23;
+
+  var $ = function(id){ return document.getElementById(id); };
+  var money = function(n){ return '$' + Math.round(n).toLocaleString('en-US'); };
+
+  function run(){
+    var want = Math.max(0, Math.floor(parseFloat($('cClients').value) || 0));
+    var bi   = parseInt($('cBand').value, 10) || 0;
+    var band = BANDS[bi];
+    var lots = Math.max(0, parseFloat($('cLots').value) || 0);
+
+    // launch qualification caps: 25/mo in the lowest band, 10/mo across the top two
+    var cap = null;
+    if (bi === 0 && want > 25) cap = 25;
+    if (bi >= 4 && want > 10) cap = 10;
+    var qual = cap !== null ? cap : want;
+
+    var payouts = qual * band.pay;
+
+    var ftdBonus = 0, ftdName = '', ftdCustom = false;
+    for (var i = 0; i < FTD.length; i++){
+      if (qual >= FTD[i][0]) {
+        if (FTD[i][1] === null) { ftdCustom = true; ftdName = '300+ FTDs'; }
+        else { ftdBonus = FTD[i][1]; ftdName = FTD[i][0] + ' FTDs'; }
+        break;
+      }
+    }
+
+    var total = payouts + ftdBonus;
+    var primeMonthly = qual * lots * PRIME_RATE;
+
+    $('cQual').textContent = qual.toLocaleString('en-US');
+    $('cRate').textContent = '· ' + money(band.pay) + ' each';
+    $('cPayouts').textContent = money(payouts);
+    $('cFtd').textContent = ftdCustom ? 'Custom' : (ftdBonus > 0 ? money(ftdBonus) : '—');
+    $('cFtdName').textContent = ftdName ? '· ' + ftdName : '';
+    $('cTotal').textContent = ftdCustom ? money(total) + '+' : money(total);
+    $('cPrime').innerHTML = money(primeMonthly) + '<small>/mo</small>';
+    $('cMinLots').textContent = 'Client must trade ' + band.min +
+      (band.min === 1 ? ' lot' : ' lots') + ' within 30 days to qualify.';
+
+    // when does Prime overtake this CPA, at the entered pace?
+    var cross = $('cCross');
+    if (lots > 0 && qual > 0) {
+      var months = Math.ceil(band.cross / lots);
+      cross.textContent = 'At ' + lots + (lots === 1 ? ' lot' : ' lots') +
+        ' a month per client, Prime would overtake this CPA in month ' + months +
+        ' — and keep paying after that.';
+    } else {
+      cross.textContent = 'Prime overtakes this CPA once a client passes ' + band.cross +
+        ' lifetime lots.';
+    }
+
+    var capNote = $('cCap');
+    if (cap !== null) {
+      capNote.textContent = 'Launch cap applied: ' + cap + ' qualifying clients per month in this band. ' +
+        'Your remaining ' + (want - cap) + ' would carry the same rate once caps lift.';
+      capNote.classList.add('on');
+    } else {
+      capNote.classList.remove('on');
+    }
+  }
+
+  ['cClients','cLots'].forEach(function(id){ $(id).addEventListener('input', run); });
+  $('cBand').addEventListener('change', run);
+  run();
 })();
 </script>
 </body>
