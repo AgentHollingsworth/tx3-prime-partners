@@ -79,15 +79,7 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 .tk+.tk{border-left:1px solid var(--line)}
 .tk-lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.19em;text-transform:uppercase;color:var(--mut);margin:0 0 16px}
 .tk.now .rate{font-family:var(--mono);font-size:clamp(30px,4.6vw,42px);font-weight:500;color:#86868C;letter-spacing:-.02em}
-.tk.now .rate s{text-decoration:none;position:relative;display:inline-block}
-.tk.now .rate s:after{content:"";position:absolute;left:-4%;right:-4%;top:52%;height:3px;background:#E5484D;border-radius:2px;box-shadow:0 0 12px rgba(229,72,77,.55);transform:scaleX(0) rotate(-5deg);transform-origin:left center}
-@media(prefers-reduced-motion:no-preference){
-  .tk.now .rate s:after{animation:strike .55s cubic-bezier(.65,0,.35,1) 1s forwards}
-}
-@media(prefers-reduced-motion:reduce){
-  .tk.now .rate s:after{transform:scaleX(1) rotate(-5deg)}
-}
-@keyframes strike{to{transform:scaleX(1) rotate(-5deg)}}
+.tk.now .rate s{text-decoration-thickness:2px;text-decoration-color:rgba(255,255,255,.28)}
 .tk.now .note{font-size:13px;color:var(--mut);margin:10px 0 0}
 .tk.prime{background:linear-gradient(135deg,rgba(255,188,48,.15),rgba(255,188,48,.03))}
 .tk-rows{display:flex;flex-wrap:wrap;gap:0 34px;align-items:flex-end}
