@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TX3 Prime Partners — Top rate from lot one</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0B1B33;
+  --ink-2:#12294A;
+  --ink-3:#1B3A63;
+  --cyan:#22B8E8;
+  --cyan-dk:#0E7FAE;
+  --gold:#E8B54A;
+  --green:#2FD08A;
+  --paper:#F7F9FB;
+  --line:rgba(255,255,255,.13);
+  --line-dk:rgba(11,27,51,.12);
+  --mut:#8FA3B8;
+  --display:'Archivo',system-ui,sans-serif;
+  --body:'Public Sans',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --wrap:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 28px}
+h1,h2,h3,h4{font-family:var(--display);font-weight:800;letter-spacing:-.03em;line-height:1.04;margin:0}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:3px}
+
+/* eyebrow */
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);margin:0 0 18px}
+.eyebrow.dk{color:var(--cyan-dk)}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(11,27,51,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{font-family:var(--display);font-weight:800;font-size:17px;color:#fff;letter-spacing:-.02em}
+.brand span{color:var(--cyan)}
+.navlinks{display:flex;gap:26px;align-items:center}
+.navlinks a{color:#C9D6E4;text-decoration:none;font-size:14px;font-weight:500}
+.navlinks a:hover{color:#fff}
+.btn{display:inline-block;font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:-.01em;padding:11px 20px;border-radius:6px;text-decoration:none;border:1px solid transparent;transition:transform .15s ease,background .15s ease}
+.btn-p{background:var(--cyan);color:#04202E}
+.btn-p:hover{background:#4ac9f2;transform:translateY(-1px)}
+.btn-o{border-color:var(--line);color:#fff}
+.btn-o:hover{border-color:var(--cyan);color:var(--cyan)}
+.btn-lg{font-size:16px;padding:15px 30px}
+@media(max-width:820px){.navlinks a:not(.btn){display:none}}
+
+/* hero */
+.hero{background:
+  radial-gradient(1100px 520px at 82% -8%,rgba(34,184,232,.20),transparent 62%),
+  radial-gradient(760px 420px at 5% 108%,rgba(232,181,74,.10),transparent 60%),
+  var(--ink);
+  color:#fff;padding:82px 0 92px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px);background-size:100% 46px;opacity:.4}
+.hero .wrap{position:relative;z-index:2}
+.hero h1{font-size:clamp(46px,7.4vw,84px)}
+.hero h1 em{font-style:normal;color:var(--cyan)}
+.hero .lede{font-size:clamp(17px,2.1vw,20px);color:#BCCDDE;max-width:600px;margin:24px 0 0;line-height:1.55}
+.hero .lede b{color:#fff;font-weight:600}
+
+/* rate ticket — signature element */
+.ticket{margin:44px 0 0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:rgba(255,255,255,.035);display:grid;grid-template-columns:1fr 1.25fr}
+.tk{padding:26px 28px 28px}
+.tk+.tk{border-left:1px solid var(--line)}
+.tk-lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.19em;text-transform:uppercase;color:var(--mut);margin:0 0 16px}
+.tk.now .rate{font-family:var(--mono);font-size:clamp(30px,4.6vw,42px);font-weight:500;color:#7D93AB;letter-spacing:-.02em}
+.tk.now .rate s{text-decoration-thickness:2px;text-decoration-color:rgba(255,255,255,.28)}
+.tk.now .note{font-size:13px;color:var(--mut);margin:10px 0 0}
+.tk.prime{background:linear-gradient(135deg,rgba(34,184,232,.13),rgba(34,184,232,.03))}
+.tk-rows{display:flex;flex-wrap:wrap;gap:0 34px;align-items:flex-end}
+.tk-row .v{font-family:var(--mono);font-size:clamp(34px,5.4vw,50px);font-weight:600;color:#fff;letter-spacing:-.03em;line-height:1}
+.tk-row .v i{font-style:normal;font-size:.44em;color:var(--cyan);font-weight:500}
+.tk-row .k{font-size:12.5px;color:#A9BED2;margin:9px 0 0;font-weight:500}
+.tk-tot{margin:20px 0 0;padding:14px 0 0;border-top:1px dashed var(--line);display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap}
+.tk-tot .k{font-size:13px;color:#A9BED2;font-weight:600}
+.tk-tot .v{font-family:var(--mono);font-size:22px;font-weight:600;color:var(--cyan)}
+.pill{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--green);border:1px solid rgba(47,208,138,.35);background:rgba(47,208,138,.09);padding:5px 11px;border-radius:99px;margin:0 0 15px}
+.dot{width:5px;height:5px;border-radius:99px;background:var(--green)}
+.hero-cta{display:flex;gap:13px;flex-wrap:wrap;margin:38px 0 0;align-items:center}
+.hero-cta .fine{font-size:13px;color:var(--mut)}
+@media(max-width:760px){.ticket{grid-template-columns:1fr}.tk+.tk{border-left:0;border-top:1px solid var(--line)}}
+
+/* generic section */
+section{padding:86px 0}
+.sec-h{max-width:660px;margin:0 0 42px}
+.sec-h h2{font-size:clamp(30px,4.2vw,44px)}
+.sec-h p{font-size:17px;color:#4B5F75;margin:16px 0 0}
+.dark{background:var(--ink);color:#fff}
+.dark .sec-h p{color:#A9BED2}
+
+/* calculator */
+.calc{display:grid;grid-template-columns:.85fr 1.15fr;gap:0;border:1px solid var(--line-dk);border-radius:14px;overflow:hidden;background:#fff}
+.calc-in{padding:32px;border-right:1px solid var(--line-dk);background:#fff}
+.fld{margin:0 0 22px}
+.fld:last-child{margin:0}
+.fld label{display:block;font-size:13px;font-weight:600;color:#3C4E63;margin:0 0 9px}
+.fld .ip{display:flex;align-items:center;border:1.5px solid var(--line-dk);border-radius:8px;background:var(--paper);transition:border-color .15s}
+.fld .ip:focus-within{border-color:var(--cyan)}
+.fld .ip span{font-family:var(--mono);font-size:14px;color:#7C8EA3;padding:0 0 0 13px}
+.fld input{flex:1;border:0;background:transparent;font-family:var(--mono);font-size:19px;font-weight:500;color:var(--ink);padding:12px 13px;width:100%}
+.fld input:focus{outline:0}
+.calc-out{padding:32px;background:linear-gradient(160deg,#0B1B33,#12294A);color:#fff}
+.ov{display:flex;justify-content:space-between;align-items:baseline;padding:13px 0;border-bottom:1px solid var(--line);gap:16px}
+.ov:first-of-type{padding-top:0}
+.ov .k{font-size:13.5px;color:#A9BED2}
+.ov .v{font-family:var(--mono);font-size:19px;font-weight:500}
+.ov.hi{border-bottom:0;padding-top:20px;margin-top:6px}
+.ov.hi .k{font-family:var(--display);font-weight:700;font-size:16px;color:#fff;letter-spacing:-.01em}
+.ov.hi .v{font-size:clamp(28px,4vw,38px);font-weight:600;color:var(--green);letter-spacing:-.03em}
+.calc-note{font-size:11.5px;color:var(--mut);margin:20px 0 0;line-height:1.55}
+@media(max-width:820px){.calc{grid-template-columns:1fr}.calc-in{border-right:0;border-bottom:1px solid var(--line-dk)}}
+
+/* ladder — tier table */
+.ladder{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.lrow{display:grid;grid-template-columns:1.25fr .95fr .95fr .95fr;align-items:center;padding:0}
+.lrow>div{padding:17px 22px}
+.lhead{background:rgba(255,255,255,.05);border-bottom:1px solid var(--line)}
+.lhead>div{font-family:var(--mono);font-size:10.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--mut);padding-top:14px;padding-bottom:14px}
+.lbody .lrow{border-bottom:1px solid var(--line);transition:background .15s}
+.lbody .lrow:last-child{border-bottom:0}
+.lbody .lrow:hover{background:rgba(34,184,232,.055)}
+.tname{font-family:var(--display);font-weight:700;font-size:15.5px;display:flex;align-items:center;gap:10px;letter-spacing:-.01em}
+.tchip{width:9px;height:9px;border-radius:2px;flex:none}
+.c-p{background:#5D7590}.c-g{background:var(--gold)}.c-d{background:var(--cyan)}.c-b{background:#F2F5F8}
+.lrow .num{font-size:15px;color:#D3E0EC;font-weight:500}
+.lrow .comb{color:#fff;font-weight:600}
+.linv{background:linear-gradient(100deg,rgba(232,181,74,.14),rgba(232,181,74,.03));border-top:1px solid rgba(232,181,74,.3)}
+.linv .tname{color:var(--gold)}
+.linv .inv-t{font-size:13.5px;color:#E3C888;grid-column:2/-1;font-weight:500}
+@media(max-width:760px){
+  .lrow{grid-template-columns:1fr 1fr;gap:0}
+  .lhead{display:none}
+  .lbody .lrow>div{padding:11px 18px}
+  .lbody .lrow>div:first-child{grid-column:1/-1;padding-top:17px}
+  .lrow .num:before{content:attr(data-l);display:block;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--mut);margin-bottom:4px}
+  .linv .inv-t{grid-column:1/-1;padding-bottom:17px}
+}
+
+/* deposit rail */
+.rail{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:0}
+.stop{border:1px solid var(--line-dk);border-radius:11px;padding:20px 16px;background:#fff;position:relative}
+.stop:nth-child(6){border-color:rgba(20,120,168,.4);background:linear-gradient(170deg,rgba(34,184,232,.09),#fff)}
+.stop .dep{font-family:var(--mono);font-size:12.5px;color:#6E8299;font-weight:500}
+.stop .bon{font-family:var(--display);font-weight:800;font-size:clamp(19px,2.5vw,25px);color:var(--ink);letter-spacing:-.03em;margin:8px 0 0}
+@media(max-width:900px){.rail{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:520px){.rail{grid-template-columns:repeat(2,1fr)}}
+
+/* compare */
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.cbox{border-radius:14px;padding:30px;border:1px solid var(--line-dk);background:#fff}
+.cbox.old{background:#EFF3F7}
+.cbox h4{font-size:19px;margin:0 0 6px}
+.cbox .sub{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8497AB;margin:0 0 20px}
+.cbox ul{list-style:none;margin:0;padding:0}
+.cbox li{display:flex;gap:11px;padding:9px 0;font-size:14.5px;color:#33455A;line-height:1.5}
+.mk{flex:none;width:17px;height:17px;border-radius:99px;display:grid;place-items:center;font-size:11px;font-weight:700;margin-top:2px}
+.mk-x{background:#E2E8EE;color:#7A8B9E}
+.mk-c{background:rgba(47,208,138,.16);color:#14875A}
+.cbox.new{border-color:rgba(20,120,168,.35);box-shadow:0 1px 0 rgba(11,27,51,.04),0 18px 44px -26px rgba(11,27,51,.3)}
+@media(max-width:760px){.cmp{grid-template-columns:1fr}}
+
+/* benefits */
+.bens{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.ben{border:1px solid var(--line);border-radius:12px;padding:24px;background:rgba(255,255,255,.035)}
+.ben h4{font-size:15.5px;margin:0 0 9px}
+.ben p{font-size:13.5px;color:#A9BED2;margin:0;line-height:1.55}
+@media(max-width:900px){.bens{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.bens{grid-template-columns:1fr}}
+
+/* terms */
+.terms{columns:2;column-gap:44px}
+.terms li{font-size:13.5px;color:#4B5F75;margin:0 0 12px;break-inside:avoid;line-height:1.55}
+@media(max-width:700px){.terms{columns:1}}
+
+/* final cta */
+.fin{background:var(--ink);color:#fff;padding:80px 0;text-align:center}
+.fin h2{font-size:clamp(30px,4.6vw,48px);max-width:660px;margin:0 auto}
+.fin p{color:#A9BED2;font-size:17px;max-width:520px;margin:20px auto 32px}
+
+/* footer */
+footer{background:#071324;color:#7E93AA;padding:44px 0;font-size:11.5px;line-height:1.65}
+footer p{margin:0 0 12px;max-width:900px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">TX3 <span>Prime</span></div>
+    <div class="navlinks">
+      <a href="#calc">Run your numbers</a>
+      <a href="#tiers">Tiers</a>
+      <a href="#compare">What changed</a>
+      <a href="#apply" class="btn btn-p">Become a partner</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">TX3 Prime Partners</p>
+    <h1>Top rate.<br><em>From lot one.</em></h1>
+    <p class="lede">No depositor thresholds. No qualifying period. No tier to climb before the rate gets good. <b>Every Prime partner earns our highest per-lot commission from their first lot.</b></p>
+
+    <div class="ticket">
+      <div class="tk now">
+        <p class="tk-lbl">What most brokers pay</p>
+        <div class="rate"><s>$6&ndash;$12</s></div>
+        <p class="note">Per lot — after you hit 100, 250, or 500 depositors to unlock it.</p>
+      </div>
+      <div class="tk prime">
+        <span class="pill"><span class="dot"></span>Live now</span>
+        <div class="tk-rows">
+          <div class="tk-row">
+            <div class="v">$18<i>/lot</i></div>
+            <p class="k">Direct referrals</p>
+          </div>
+          <div class="tk-row">
+            <div class="v">$5<i>/lot</i></div>
+            <p class="k">Second level</p>
+          </div>
+        </div>
+        <div class="tk-tot">
+          <span class="k">Your rate on day one</span>
+          <span class="v">$23 per lot</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-cta">
+      <a href="#apply" class="btn btn-p btn-lg">Become a partner</a>
+      <a href="#calc" class="btn btn-o btn-lg">Run your numbers</a>
+      <span class="fine">No retainer required. Volume bonuses on top.</span>
+    </div>
+  </div>
+</header>
+
+<section id="calc">
+  <div class="wrap">
+    <div class="sec-h">
+      <p class="eyebrow dk">The calculator</p>
+      <h2>See what moving your network is worth</h2>
+      <p>Same traders. Same volume. Enter what you earn today and we'll show you the difference at Prime rates.</p>
+    </div>
+
+    <div class="calc">
+      <div class="calc-in">
+        <div class="fld">
+          <label for="rate">What do you earn per lot today?</label>
+          <div class="ip"><span>$</span><input id="rate" class="num" type="number" min="0" step="0.5" value="8"></div>
+        </div>
+        <div class="fld">
+          <label for="traders">How many active traders do you have?</label>
+          <div class="ip"><span>#</span><input id="traders" class="num" type="number" min="0" step="1" value="40"></div>
+        </div>
+        <div class="fld">
+          <label for="lots">Average lots per trader, per month</label>
+          <div class="ip"><span>◊</span><input id="lots" class="num" type="number" min="0" step="1" value="10"></div>
+        </div>
+      </div>
+      <div class="calc-out">
+        <div class="ov"><span class="k">Monthly volume</span><span class="v num" id="oVol">400 lots</span></div>
+        <div class="ov"><span class="k">You earn today</span><span class="v num" id="oNow">$3,200</span></div>
+        <div class="ov"><span class="k">Base commission at Prime</span><span class="v num" id="oBase">$9,200</span></div>
+        <div class="ov"><span class="k">Monthly volume bonus <span id="oTierName" style="color:var(--cyan)">· Prime</span></span><span class="v num" id="oBonus">$300</span></div>
+        <div class="ov hi"><span class="k" id="oDeltaLbl">Extra per month at Prime</span><span class="v num" id="oDelta">+$6,300</span></div>
+        <p class="calc-note">Illustrative only. Actual earnings depend on your clients' real trading activity. Volume bonus shown is the band your monthly volume qualifies for; bonuses are paid on genuine client volume and re-qualify each month.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tiers" class="dark">
+  <div class="wrap">
+    <div class="sec-h">
+      <p class="eyebrow">Prime tiers</p>
+      <h2>Tiers add. They never gate.</h2>
+      <p>Your tier is set by the volume your network trades each month — and it re-sets monthly, so a strong month pays like a strong month. Whatever tier you're in, your $23 per lot never changes.</p>
+    </div>
+
+    <div class="ladder">
+      <div class="lrow lhead">
+        <div>Tier</div><div>Monthly volume</div><div>Monthly bonus</div><div>Combined per lot</div>
+      </div>
+      <div class="lbody">
+        <div class="lrow"><div class="tname"><span class="tchip c-p"></span>Prime</div><div class="num" data-l="Volume">100 lots</div><div class="num" data-l="Bonus">$100</div><div class="num comb" data-l="Per lot">$24.00</div></div>
+        <div class="lrow"><div class="tname"><span class="tchip c-p"></span>Prime</div><div class="num" data-l="Volume">250 lots</div><div class="num" data-l="Bonus">$300</div><div class="num comb" data-l="Per lot">$24.20</div></div>
+        <div class="lrow"><div class="tname"><span class="tchip c-p"></span>Prime</div><div class="num" data-l="Volume">500 lots</div><div class="num" data-l="Bonus">$750</div><div class="num comb" data-l="Per lot">$24.50</div></div>
+        <div class="lrow"><div class="tname"><span class="tchip c-g"></span>Prime Gold</div><div class="num" data-l="Volume">1,000 lots</div><div class="num" data-l="Bonus">$1,800</div><div class="num comb" data-l="Per lot">$24.80</div></div>
+        <div class="lrow"><div class="tname"><span class="tchip c-g"></span>Prime Gold</div><div class="num" data-l="Volume">2,500 lots</div><div class="num" data-l="Bonus">$5,000</div><div class="num comb" data-l="Per lot">$25.00</div></div>
+        <div class="lrow"><div class="tname"><span class="tchip c-d"></span>Prime Diamond</div><div class="num" data-l="Volume">5,000 lots</div><div class="num" data-l="Bonus">$11,000</div><div class="num comb" data-l="Per lot">$25.20</div></div>
+        <div class="lrow"><div class="tname"><span class="tchip c-d"></span>Prime Diamond</div><div class="num" data-l="Volume">7,500 lots</div><div class="num" data-l="Bonus">$17,250</div><div class="num comb" data-l="Per lot">$25.30</div></div>
+        <div class="lrow"><div class="tname"><span class="tchip c-b"></span>Prime Black</div><div class="num" data-l="Volume">10,000 lots</div><div class="num" data-l="Bonus">$24,000</div><div class="num comb" data-l="Per lot">$25.40</div></div>
+        <div class="lrow linv"><div class="tname"><span class="tchip c-g"></span>Prime Black · Invitation</div><div class="inv-t">10,000+ lots — custom terms, negotiated directly. We'll come to you.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-h">
+      <p class="eyebrow dk">Deposit milestones</p>
+      <h2>One-time bonuses as your network funds</h2>
+      <p>Separate from your monthly volume bonus, and paid once when your network's cumulative net deposits cross each mark.</p>
+    </div>
+    <div class="rail">
+      <div class="stop"><div class="dep">$50K</div><div class="bon">$500</div></div>
+      <div class="stop"><div class="dep">$150K</div><div class="bon">$1,500</div></div>
+      <div class="stop"><div class="dep">$300K</div><div class="bon">$3,500</div></div>
+      <div class="stop"><div class="dep">$500K</div><div class="bon">$7,500</div></div>
+      <div class="stop"><div class="dep">$750K</div><div class="bon">$12,500</div></div>
+      <div class="stop"><div class="dep">$1M</div><div class="bon">$20,000</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="compare">
+  <div class="wrap">
+    <div class="sec-h">
+      <p class="eyebrow dk">What changed</p>
+      <h2>We stopped making partners earn the rate</h2>
+      <p>Our old program had four tiers and depositor thresholds between each one. Prime replaces it. Here's the difference, plainly.</p>
+    </div>
+    <div class="cmp">
+      <div class="cbox old">
+        <h4>The old tier program</h4>
+        <p class="sub">Retired</p>
+        <ul>
+          <li><span class="mk mk-x">×</span><span>Started at $6 per lot on direct referrals</span></li>
+          <li><span class="mk mk-x">×</span><span>$12 per lot only after 500 depositors in your tree</span></li>
+          <li><span class="mk mk-x">×</span><span>Three separate thresholds to climb before the top rate</span></li>
+          <li><span class="mk mk-x">×</span><span>$1 per lot on indirect referrals</span></li>
+          <li><span class="mk mk-x">×</span><span>No monthly volume bonus</span></li>
+        </ul>
+      </div>
+      <div class="cbox new">
+        <h4>TX3 Prime</h4>
+        <p class="sub">Live now</p>
+        <ul>
+          <li><span class="mk mk-c">✓</span><span>$18 per lot on direct referrals, from your first lot</span></li>
+          <li><span class="mk mk-c">✓</span><span>$5 per lot on second level — five times the old rate</span></li>
+          <li><span class="mk mk-c">✓</span><span>Nothing to unlock. No depositor thresholds anywhere</span></li>
+          <li><span class="mk mk-c">✓</span><span>Recurring monthly bonus on top, up to $24,000</span></li>
+          <li><span class="mk mk-c">✓</span><span>One-time deposit milestones up to $20,000</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap">
+    <div class="sec-h">
+      <p class="eyebrow">What else you get</p>
+      <h2>A rate is not a partnership</h2>
+    </div>
+    <div class="bens">
+      <div class="ben">
+        <h4>A named person</h4>
+        <p>A dedicated Partnership Success Manager for your region — not a ticket queue.</p>
+      </div>
+      <div class="ben">
+        <h4>Instant payouts</h4>
+        <p>Commission paid out on demand, with full reporting on your downline's activity.</p>
+      </div>
+      <div class="ben">
+        <h4>Branded media kits</h4>
+        <p>Campaign assets and creative built for your market, refreshed regularly.</p>
+      </div>
+      <div class="ben">
+        <h4>Deeper structures</h4>
+        <p>Three or more referral levels available on request, subject to approval.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-h">
+      <p class="eyebrow dk">The fine print, in plain language</p>
+      <h2>How we keep this fair</h2>
+      <p>Rates this high only work when the volume behind them is real. These rules protect the partners producing genuine business.</p>
+    </div>
+    <ul class="terms">
+      <li>Commission and bonuses are paid on real client trading activity. Volume from accounts you own or control does not qualify.</li>
+      <li>Round-trip trades opened and closed with no genuine market exposure are excluded from bonus-qualifying volume.</li>
+      <li>Volume tiers must be spread across a reasonable number of active clients, not concentrated in a small handful of accounts.</li>
+      <li>Net deposits count toward milestones once funds have remained in-account for 30 days.</li>
+      <li>Deposit milestones are based on net deposits — deposits minus withdrawals — not gross inflows.</li>
+      <li>Volume tiers re-qualify each calendar month based on that month's activity.</li>
+      <li>TX3 Markets may review partner activity and recover bonuses paid on volume or deposits later found to be non-genuine.</li>
+      <li>Rates and bonus schedules are subject to the full partner terms and may change with notice.</li>
+    </ul>
+  </div>
+</section>
+
+<div class="fin" id="apply">
+  <div class="wrap">
+    <h2>Your network is already trading. Get paid properly for it.</h2>
+    <p>Apply in a few minutes. A Partnership Success Manager for your region will reach out directly.</p>
+    <a href="https://crm.tx3markets.com/en/auth/sign-up" class="btn btn-p btn-lg">Become a partner</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p><strong style="color:#A9BED2">Risk disclosure.</strong> TX3 Markets Global (PTY) LTD is an Authorised Financial Services Provider licensed and regulated by the Financial Sector Conduct Authority (FSCA) in South Africa (FSP No. 53180). Client accounts are onboarded through TX3 Markets Global LTD, incorporated in Saint Lucia (Reg. No. 2023-00449), also licensed as an International Brokerage and Clearing House by the Mwali International Services Authority of the Union of the Comoros (Licence No. BFX2025154).</p>
+    <p>Trading leveraged products such as Forex and Contracts for Difference carries a high level of risk to your capital and may not be suitable for all investors. Past performance is not indicative of future results. Assess your objectives, experience and risk tolerance before trading, and seek independent advice if necessary.</p>
+    <p>All commission rates, bonus figures and calculator outputs shown on this page are illustrative and subject to the TX3 Markets partner terms. Partner earnings depend on genuine client trading activity. TX3 Markets does not provide services to residents of certain restricted jurisdictions.</p>
+    <p style="color:#5D7590">© 2026 TX3 Markets. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var BASE = 23, bands = [
+    [10000, 24000, 'Prime Black'],
+    [7500, 17250, 'Prime Diamond'],
+    [5000, 11000, 'Prime Diamond'],
+    [2500, 5000, 'Prime Gold'],
+    [1000, 1800, 'Prime Gold'],
+    [500, 750, 'Prime'],
+    [250, 300, 'Prime'],
+    [100, 100, 'Prime']
+  ];
+  var $ = function(id){ return document.getElementById(id); };
+  var money = function(n){
+    return '$' + Math.round(n).toLocaleString('en-US');
+  };
+
+  function calc(){
+    var rate = Math.max(0, parseFloat($('rate').value) || 0);
+    var traders = Math.max(0, parseFloat($('traders').value) || 0);
+    var lpt = Math.max(0, parseFloat($('lots').value) || 0);
+    var vol = traders * lpt;
+
+    var bonus = 0, tname = '';
+    for (var i = 0; i < bands.length; i++){
+      if (vol >= bands[i][0]) { bonus = bands[i][1]; tname = bands[i][2]; break; }
+    }
+    // above the top band, bonus holds at the capped per-lot rate
+    if (vol > 10000) { bonus = vol * 2.40; tname = 'Prime Black · Invitation'; }
+
+    var now = vol * rate;
+    var base = vol * BASE;
+    var delta = (base + bonus) - now;
+
+    $('oVol').textContent = Math.round(vol).toLocaleString('en-US') + ' lots';
+    $('oNow').textContent = money(now);
+    $('oBase').textContent = money(base);
+    $('oBonus').textContent = bonus > 0 ? money(bonus) : '—';
+    $('oTierName').textContent = tname ? '· ' + tname : '';
+    var d = $('oDelta');
+    d.textContent = (delta >= 0 ? '+' : '−') + money(Math.abs(delta));
+    d.style.color = delta >= 0 ? 'var(--green)' : '#F0A6A6';
+    $('oDeltaLbl').textContent = delta >= 0 ? 'Extra per month at Prime' : 'Difference per month at Prime';
+  }
+
+  ['rate','traders','lots'].forEach(function(id){
+    $(id).addEventListener('input', calc);
+  });
+  calc();
+})();
+</script>
+</body>
+</html>
