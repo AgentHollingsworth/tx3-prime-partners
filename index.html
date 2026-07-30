@@ -538,7 +538,7 @@ footer p{margin:0 0 12px;max-width:900px}
         <div class="fld">
           <label for="cLots">Average lots per client, per month</label>
           <div class="ip"><span>◊</span><input id="cLots" class="num" type="number" min="0" step="1" value="6"></div>
-          <p class="hint">Must reach the band's 30-day minimum above, or no CPA is paid.</p>
+          <p class="hint">Trade below the band's minimum and the client pays out at the highest band they do reach.</p>
         </div>
       </div>
       <div class="calc-out">
@@ -803,16 +803,23 @@ document.documentElement.classList.add('js');
     var band = BANDS[bi];
     var lots = Math.max(0, parseFloat($('cLots').value) || 0);
 
-    // no CPA at all unless the client trades the band's minimum within 30 days
-    var meetsMin = lots >= band.min;
+    // pay at the highest band the client actually reaches: their deposit caps the band,
+    // and their lots step it down until the 30-day minimum is met
+    var payIdx = -1;
+    for (var j = bi; j >= 0; j--){
+      if (lots >= BANDS[j].min) { payIdx = j; break; }
+    }
+    var meetsMin = payIdx >= 0;
+    var payBand = meetsMin ? BANDS[payIdx] : band;
+    var steppedDown = meetsMin && payIdx < bi;
 
     // launch qualification caps: 25/mo in the lowest band, 10/mo across the top two
     var cap = null;
-    if (bi === 0 && want > 25) cap = 25;
-    if (bi >= 4 && want > 10) cap = 10;
+    if (meetsMin && payIdx === 0 && want > 25) cap = 25;
+    if (meetsMin && payIdx >= 4 && want > 10) cap = 10;
     var qual = meetsMin ? (cap !== null ? cap : want) : 0;
 
-    var payouts = qual * band.pay;
+    var payouts = qual * payBand.pay;
 
     var ftdBonus = 0, ftdName = '', ftdCustom = false;
     for (var i = 0; i < FTD.length; i++){
@@ -828,22 +835,22 @@ document.documentElement.classList.add('js');
     var primeMonthly = want * lots * PRIME_RATE;
 
     $('cQual').textContent = qual.toLocaleString('en-US');
-    $('cRate').textContent = '· ' + money(band.pay) + ' each';
+    $('cRate').textContent = meetsMin ? '· ' + money(payBand.pay) + ' each' : '';
     $('cPayouts').textContent = money(payouts);
     $('cFtd').textContent = ftdCustom ? 'Custom' : (ftdBonus > 0 ? money(ftdBonus) : '—');
     $('cFtdName').textContent = ftdName ? '· ' + ftdName : '';
     $('cTotal').textContent = ftdCustom ? money(total) + '+' : money(total);
     $('cPrime').innerHTML = money(primeMonthly) + '<small>/mo</small>';
     $('cMinLots').textContent = 'Client must trade ' + band.min +
-      (band.min === 1 ? ' lot' : ' lots') + ' within 30 days to qualify.';
+      (band.min === 1 ? ' lot' : ' lots') + ' within 30 days for this band\'s ' +
+      money(band.pay) + '.';
 
-    // clients trading below the band minimum earn no CPA at all
+    // below even the entry minimum, nothing pays at all
     var warn = $('cWarn');
     if (!meetsMin && want > 0) {
-      warn.innerHTML = '<b>No CPA is paid at this pace.</b> This band requires ' + band.min +
-        (band.min === 1 ? ' lot' : ' lots') + ' within 30 days, and you\'ve entered ' + lots +
-        (lots === 1 ? ' lot' : ' lots') + ' per client. Either these clients trade more, or a lower deposit band ' +
-        'with an easier minimum fits your traffic better. Prime pays from lot one with no minimum.';
+      warn.innerHTML = '<b>No CPA is paid at this pace.</b> The lowest band still needs ' + BANDS[0].min +
+        (BANDS[0].min === 1 ? ' lot' : ' lots') + ' within 30 days, and you\'ve entered ' + lots +
+        (lots === 1 ? ' lot' : ' lots') + ' per client. Prime pays from lot one with no minimum.';
       warn.classList.add('on');
     } else {
       warn.classList.remove('on');
@@ -855,19 +862,32 @@ document.documentElement.classList.add('js');
       cross.textContent = 'Prime has no lot minimum — it pays $' + PRIME_RATE +
         ' on every lot these clients trade, from the first one.';
     } else if (lots > 0) {
-      var months = Math.ceil(band.cross / lots);
+      var months = Math.ceil(payBand.cross / lots);
       cross.textContent = 'At ' + lots + (lots === 1 ? ' lot' : ' lots') +
         ' a month per client, Prime would overtake this CPA in month ' + months +
         ' — and keep paying after that.';
     } else {
-      cross.textContent = 'Prime overtakes this CPA once a client passes ' + band.cross +
+      cross.textContent = 'Prime overtakes this CPA once a client passes ' + payBand.cross +
         ' lifetime lots.';
     }
 
+    // explain a step-down and any launch cap in one place
+    var notes = [];
+    if (steppedDown) {
+      notes.push('These clients deposit in the ' + band.label + ' band, but at ' + lots +
+        (lots === 1 ? ' lot' : ' lots') + ' each they fall short of its ' + band.min +
+        '-lot minimum. They pay out at the ' + payBand.label + ' rate of ' + money(payBand.pay) +
+        ' — the highest band their trading actually reaches. Lift them to ' + band.min +
+        ' lots and each one pays ' + money(band.pay) + '.');
+    }
+    if (cap !== null) {
+      notes.push('Launch cap applied: ' + cap + ' qualifying clients per month in the ' +
+        payBand.label + ' band. Your remaining ' + (want - cap) +
+        ' would carry the same rate once caps lift.');
+    }
     var capNote = $('cCap');
-    if (cap !== null && meetsMin) {
-      capNote.textContent = 'Launch cap applied: ' + cap + ' qualifying clients per month in this band. ' +
-        'Your remaining ' + (want - cap) + ' would carry the same rate once caps lift.';
+    if (notes.length) {
+      capNote.textContent = notes.join(' ');
       capNote.classList.add('on');
     } else {
       capNote.classList.remove('on');
