@@ -4,24 +4,28 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TX3 Prime Partners — Top rate from lot one</title>
+<meta name="description" content="TX3 Prime Partners — $23 per lot from your first lot. No depositor thresholds, no qualifying period, volume bonuses on top.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#0B1B33;
-  --ink-2:#12294A;
-  --ink-3:#1B3A63;
-  --cyan:#22B8E8;
-  --cyan-dk:#0E7FAE;
-  --gold:#E8B54A;
+  /* TX3 brand */
+  --gold:#FFBC30;
+  --gold-dk:#E5A61F;
+  --gold-ink:#7A5200;
+  --ink:#030304;
+  --ink-2:#141416;
+  --ink-3:#2A2A2A;
   --green:#2FD08A;
-  --paper:#F7F9FB;
-  --line:rgba(255,255,255,.13);
-  --line-dk:rgba(11,27,51,.12);
-  --mut:#8FA3B8;
-  --display:'Archivo',system-ui,sans-serif;
-  --body:'Public Sans',system-ui,sans-serif;
+  --paper:#F6F7F9;
+  --paper-2:#E7ECF7;
+  --line:rgba(255,255,255,.11);
+  --line-dk:rgba(3,3,4,.11);
+  --mut:#9A9A9E;
+  --mut-dk:#626262;
+  --display:'Inter',system-ui,sans-serif;
+  --body:'Inter',system-ui,sans-serif;
   --mono:'IBM Plex Mono',ui-monospace,monospace;
   --wrap:1120px;
 }
@@ -29,61 +33,61 @@
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 28px}
-h1,h2,h3,h4{font-family:var(--display);font-weight:800;letter-spacing:-.03em;line-height:1.04;margin:0}
+h1,h2,h3,h4{font-family:var(--display);font-weight:800;letter-spacing:-.035em;line-height:1.05;margin:0}
 .num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
 a{color:inherit}
-:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:3px}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:3px}
 
 /* eyebrow */
-.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);margin:0 0 18px}
-.eyebrow.dk{color:var(--cyan-dk)}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:0 0 18px}
+.eyebrow.dk{color:var(--gold-dk)}
 
 /* nav */
-nav{position:sticky;top:0;z-index:50;background:rgba(11,27,51,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav{position:sticky;top:0;z-index:50;background:rgba(3,3,4,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
-.brand{font-family:var(--display);font-weight:800;font-size:17px;color:#fff;letter-spacing:-.02em}
-.brand span{color:var(--cyan)}
+.brand{font-family:var(--display);font-weight:900;font-size:17px;color:#fff;letter-spacing:-.03em;font-style:italic}
+.brand span{color:var(--gold)}
 .navlinks{display:flex;gap:26px;align-items:center}
-.navlinks a{color:#C9D6E4;text-decoration:none;font-size:14px;font-weight:500}
+.navlinks a{color:#C6C6CA;text-decoration:none;font-size:14px;font-weight:500}
 .navlinks a:hover{color:#fff}
-.btn{display:inline-block;font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:-.01em;padding:11px 20px;border-radius:6px;text-decoration:none;border:1px solid transparent;transition:transform .15s ease,background .15s ease}
-.btn-p{background:var(--cyan);color:#04202E}
-.btn-p:hover{background:#4ac9f2;transform:translateY(-1px)}
-.btn-o{border-color:var(--line);color:#fff}
-.btn-o:hover{border-color:var(--cyan);color:var(--cyan)}
+.btn{display:inline-block;font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:-.01em;padding:11px 20px;border-radius:8px;text-decoration:none;border:1px solid transparent;transition:transform .15s ease,background .15s ease,border-color .15s ease}
+.btn-p{background:var(--gold);color:#1A1200}
+.btn-p:hover{background:#FFCB5C;transform:translateY(-1px)}
+.btn-o{border-color:rgba(255,255,255,.22);color:#fff}
+.btn-o:hover{border-color:var(--gold);color:var(--gold)}
 .btn-lg{font-size:16px;padding:15px 30px}
 @media(max-width:820px){.navlinks a:not(.btn){display:none}}
 
 /* hero */
 .hero{background:
-  radial-gradient(1100px 520px at 82% -8%,rgba(34,184,232,.20),transparent 62%),
-  radial-gradient(760px 420px at 5% 108%,rgba(232,181,74,.10),transparent 60%),
+  radial-gradient(1100px 520px at 82% -8%,rgba(255,188,48,.20),transparent 62%),
+  radial-gradient(760px 420px at 5% 108%,rgba(255,188,48,.07),transparent 60%),
   var(--ink);
   color:#fff;padding:82px 0 92px;position:relative;overflow:hidden}
 .hero:after{content:"";position:absolute;inset:0;pointer-events:none;
-  background-image:linear-gradient(var(--line) 1px,transparent 1px);background-size:100% 46px;opacity:.4}
+  background-image:linear-gradient(var(--line) 1px,transparent 1px);background-size:100% 46px;opacity:.35}
 .hero .wrap{position:relative;z-index:2}
-.hero h1{font-size:clamp(46px,7.4vw,84px)}
-.hero h1 em{font-style:normal;color:var(--cyan)}
-.hero .lede{font-size:clamp(17px,2.1vw,20px);color:#BCCDDE;max-width:600px;margin:24px 0 0;line-height:1.55}
+.hero h1{font-size:clamp(46px,7.4vw,84px);font-weight:900}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero .lede{font-size:clamp(17px,2.1vw,20px);color:#B6B6BC;max-width:600px;margin:24px 0 0;line-height:1.55}
 .hero .lede b{color:#fff;font-weight:600}
 
 /* rate ticket — signature element */
-.ticket{margin:44px 0 0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:rgba(255,255,255,.035);display:grid;grid-template-columns:1fr 1.25fr}
+.ticket{margin:44px 0 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:rgba(255,255,255,.035);display:grid;grid-template-columns:1fr 1.25fr}
 .tk{padding:26px 28px 28px}
 .tk+.tk{border-left:1px solid var(--line)}
 .tk-lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.19em;text-transform:uppercase;color:var(--mut);margin:0 0 16px}
-.tk.now .rate{font-family:var(--mono);font-size:clamp(30px,4.6vw,42px);font-weight:500;color:#7D93AB;letter-spacing:-.02em}
+.tk.now .rate{font-family:var(--mono);font-size:clamp(30px,4.6vw,42px);font-weight:500;color:#86868C;letter-spacing:-.02em}
 .tk.now .rate s{text-decoration-thickness:2px;text-decoration-color:rgba(255,255,255,.28)}
 .tk.now .note{font-size:13px;color:var(--mut);margin:10px 0 0}
-.tk.prime{background:linear-gradient(135deg,rgba(34,184,232,.13),rgba(34,184,232,.03))}
+.tk.prime{background:linear-gradient(135deg,rgba(255,188,48,.15),rgba(255,188,48,.03))}
 .tk-rows{display:flex;flex-wrap:wrap;gap:0 34px;align-items:flex-end}
 .tk-row .v{font-family:var(--mono);font-size:clamp(34px,5.4vw,50px);font-weight:600;color:#fff;letter-spacing:-.03em;line-height:1}
-.tk-row .v i{font-style:normal;font-size:.44em;color:var(--cyan);font-weight:500}
-.tk-row .k{font-size:12.5px;color:#A9BED2;margin:9px 0 0;font-weight:500}
+.tk-row .v i{font-style:normal;font-size:.44em;color:var(--gold);font-weight:500}
+.tk-row .k{font-size:12.5px;color:#B9B9BF;margin:9px 0 0;font-weight:500}
 .tk-tot{margin:20px 0 0;padding:14px 0 0;border-top:1px dashed var(--line);display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap}
-.tk-tot .k{font-size:13px;color:#A9BED2;font-weight:600}
-.tk-tot .v{font-family:var(--mono);font-size:22px;font-weight:600;color:var(--cyan)}
+.tk-tot .k{font-size:13px;color:#B9B9BF;font-weight:600}
+.tk-tot .v{font-family:var(--mono);font-size:22px;font-weight:600;color:var(--gold)}
 .pill{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--green);border:1px solid rgba(47,208,138,.35);background:rgba(47,208,138,.09);padding:5px 11px;border-radius:99px;margin:0 0 15px}
 .dot{width:5px;height:5px;border-radius:99px;background:var(--green)}
 .hero-cta{display:flex;gap:13px;flex-wrap:wrap;margin:38px 0 0;align-items:center}
@@ -94,49 +98,49 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 section{padding:86px 0}
 .sec-h{max-width:660px;margin:0 0 42px}
 .sec-h h2{font-size:clamp(30px,4.2vw,44px)}
-.sec-h p{font-size:17px;color:#4B5F75;margin:16px 0 0}
+.sec-h p{font-size:17px;color:var(--mut-dk);margin:16px 0 0}
 .dark{background:var(--ink);color:#fff}
-.dark .sec-h p{color:#A9BED2}
+.dark .sec-h p{color:#B9B9BF}
 
 /* calculator */
-.calc{display:grid;grid-template-columns:.85fr 1.15fr;gap:0;border:1px solid var(--line-dk);border-radius:14px;overflow:hidden;background:#fff}
+.calc{display:grid;grid-template-columns:.85fr 1.15fr;gap:0;border:1px solid var(--line-dk);border-radius:16px;overflow:hidden;background:#fff}
 .calc-in{padding:32px;border-right:1px solid var(--line-dk);background:#fff}
 .fld{margin:0 0 22px}
 .fld:last-child{margin:0}
-.fld label{display:block;font-size:13px;font-weight:600;color:#3C4E63;margin:0 0 9px}
-.fld .ip{display:flex;align-items:center;border:1.5px solid var(--line-dk);border-radius:8px;background:var(--paper);transition:border-color .15s}
-.fld .ip:focus-within{border-color:var(--cyan)}
-.fld .ip span{font-family:var(--mono);font-size:14px;color:#7C8EA3;padding:0 0 0 13px}
+.fld label{display:block;font-size:13px;font-weight:600;color:#3A3A3C;margin:0 0 9px}
+.fld .ip{display:flex;align-items:center;border:1.5px solid var(--line-dk);border-radius:9px;background:var(--paper);transition:border-color .15s}
+.fld .ip:focus-within{border-color:var(--gold)}
+.fld .ip span{font-family:var(--mono);font-size:14px;color:#8A8A8E;padding:0 0 0 13px}
 .fld input{flex:1;border:0;background:transparent;font-family:var(--mono);font-size:19px;font-weight:500;color:var(--ink);padding:12px 13px;width:100%}
 .fld input:focus{outline:0}
-.calc-out{padding:32px;background:linear-gradient(160deg,#0B1B33,#12294A);color:#fff}
+.calc-out{padding:32px;background:linear-gradient(160deg,#030304,#1E1E20);color:#fff}
 .ov{display:flex;justify-content:space-between;align-items:baseline;padding:13px 0;border-bottom:1px solid var(--line);gap:16px}
 .ov:first-of-type{padding-top:0}
-.ov .k{font-size:13.5px;color:#A9BED2}
+.ov .k{font-size:13.5px;color:#B9B9BF}
 .ov .v{font-family:var(--mono);font-size:19px;font-weight:500}
 .ov.hi{border-bottom:0;padding-top:20px;margin-top:6px}
-.ov.hi .k{font-family:var(--display);font-weight:700;font-size:16px;color:#fff;letter-spacing:-.01em}
-.ov.hi .v{font-size:clamp(28px,4vw,38px);font-weight:600;color:var(--green);letter-spacing:-.03em}
+.ov.hi .k{font-family:var(--display);font-weight:700;font-size:16px;color:#fff;letter-spacing:-.015em}
+.ov.hi .v{font-size:clamp(28px,4vw,38px);font-weight:600;color:var(--gold);letter-spacing:-.03em}
 .calc-note{font-size:11.5px;color:var(--mut);margin:20px 0 0;line-height:1.55}
 @media(max-width:820px){.calc{grid-template-columns:1fr}.calc-in{border-right:0;border-bottom:1px solid var(--line-dk)}}
 
 /* ladder — tier table */
-.ladder{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.ladder{border:1px solid var(--line);border-radius:16px;overflow:hidden}
 .lrow{display:grid;grid-template-columns:1.25fr .95fr .95fr .95fr;align-items:center;padding:0}
 .lrow>div{padding:17px 22px}
 .lhead{background:rgba(255,255,255,.05);border-bottom:1px solid var(--line)}
 .lhead>div{font-family:var(--mono);font-size:10.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--mut);padding-top:14px;padding-bottom:14px}
 .lbody .lrow{border-bottom:1px solid var(--line);transition:background .15s}
 .lbody .lrow:last-child{border-bottom:0}
-.lbody .lrow:hover{background:rgba(34,184,232,.055)}
-.tname{font-family:var(--display);font-weight:700;font-size:15.5px;display:flex;align-items:center;gap:10px;letter-spacing:-.01em}
+.lbody .lrow:hover{background:rgba(255,188,48,.06)}
+.tname{font-family:var(--display);font-weight:700;font-size:15.5px;display:flex;align-items:center;gap:10px;letter-spacing:-.015em}
 .tchip{width:9px;height:9px;border-radius:2px;flex:none}
-.c-p{background:#5D7590}.c-g{background:var(--gold)}.c-d{background:var(--cyan)}.c-b{background:#F2F5F8}
-.lrow .num{font-size:15px;color:#D3E0EC;font-weight:500}
+.c-p{background:#6E6E74}.c-g{background:var(--gold)}.c-d{background:#B2C2E1}.c-b{background:#F6F7F9}
+.lrow .num{font-size:15px;color:#D8D8DC;font-weight:500}
 .lrow .comb{color:#fff;font-weight:600}
-.linv{background:linear-gradient(100deg,rgba(232,181,74,.14),rgba(232,181,74,.03));border-top:1px solid rgba(232,181,74,.3)}
+.linv{background:linear-gradient(100deg,rgba(255,188,48,.15),rgba(255,188,48,.03));border-top:1px solid rgba(255,188,48,.3)}
 .linv .tname{color:var(--gold)}
-.linv .inv-t{font-size:13.5px;color:#E3C888;grid-column:2/-1;font-weight:500}
+.linv .inv-t{font-size:13.5px;color:#EBC97F;grid-column:2/-1;font-weight:500}
 @media(max-width:760px){
   .lrow{grid-template-columns:1fr 1fr;gap:0}
   .lhead{display:none}
@@ -148,47 +152,49 @@ section{padding:86px 0}
 
 /* deposit rail */
 .rail{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:0}
-.stop{border:1px solid var(--line-dk);border-radius:11px;padding:20px 16px;background:#fff;position:relative}
-.stop:nth-child(6){border-color:rgba(20,120,168,.4);background:linear-gradient(170deg,rgba(34,184,232,.09),#fff)}
-.stop .dep{font-family:var(--mono);font-size:12.5px;color:#6E8299;font-weight:500}
-.stop .bon{font-family:var(--display);font-weight:800;font-size:clamp(19px,2.5vw,25px);color:var(--ink);letter-spacing:-.03em;margin:8px 0 0}
+.stop{border:1px solid var(--line-dk);border-radius:12px;padding:20px 16px;background:#fff;position:relative}
+.stop:nth-child(6){border-color:rgba(229,166,31,.5);background:linear-gradient(170deg,rgba(255,188,48,.14),#fff)}
+.stop .dep{font-family:var(--mono);font-size:12.5px;color:var(--mut-dk);font-weight:500}
+.stop .bon{font-family:var(--display);font-weight:800;font-size:clamp(19px,2.5vw,25px);color:var(--ink);letter-spacing:-.035em;margin:8px 0 0}
 @media(max-width:900px){.rail{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:520px){.rail{grid-template-columns:repeat(2,1fr)}}
 
 /* compare */
 .cmp{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.cbox{border-radius:14px;padding:30px;border:1px solid var(--line-dk);background:#fff}
-.cbox.old{background:#EFF3F7}
+.cbox{border-radius:16px;padding:30px;border:1px solid var(--line-dk);background:#fff}
+.cbox.old{background:#EDEFF3}
 .cbox h4{font-size:19px;margin:0 0 6px}
-.cbox .sub{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8497AB;margin:0 0 20px}
+.cbox .sub{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A8A8E;margin:0 0 20px}
 .cbox ul{list-style:none;margin:0;padding:0}
-.cbox li{display:flex;gap:11px;padding:9px 0;font-size:14.5px;color:#33455A;line-height:1.5}
+.cbox li{display:flex;gap:11px;padding:9px 0;font-size:14.5px;color:#37373A;line-height:1.5}
 .mk{flex:none;width:17px;height:17px;border-radius:99px;display:grid;place-items:center;font-size:11px;font-weight:700;margin-top:2px}
-.mk-x{background:#E2E8EE;color:#7A8B9E}
-.mk-c{background:rgba(47,208,138,.16);color:#14875A}
-.cbox.new{border-color:rgba(20,120,168,.35);box-shadow:0 1px 0 rgba(11,27,51,.04),0 18px 44px -26px rgba(11,27,51,.3)}
+.mk-x{background:#DEE1E7;color:#7C7C82}
+.mk-c{background:rgba(255,188,48,.24);color:#7A5200}
+.cbox.new{border-color:rgba(229,166,31,.45);box-shadow:0 1px 0 rgba(3,3,4,.04),0 18px 44px -26px rgba(3,3,4,.35)}
 @media(max-width:760px){.cmp{grid-template-columns:1fr}}
 
 /* benefits */
 .bens{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.ben{border:1px solid var(--line);border-radius:12px;padding:24px;background:rgba(255,255,255,.035)}
+.ben{border:1px solid var(--line);border-radius:14px;padding:24px;background:rgba(255,255,255,.035)}
 .ben h4{font-size:15.5px;margin:0 0 9px}
-.ben p{font-size:13.5px;color:#A9BED2;margin:0;line-height:1.55}
+.ben p{font-size:13.5px;color:#B9B9BF;margin:0;line-height:1.55}
 @media(max-width:900px){.bens{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:500px){.bens{grid-template-columns:1fr}}
 
 /* terms */
 .terms{columns:2;column-gap:44px}
-.terms li{font-size:13.5px;color:#4B5F75;margin:0 0 12px;break-inside:avoid;line-height:1.55}
+.terms li{font-size:13.5px;color:var(--mut-dk);margin:0 0 12px;break-inside:avoid;line-height:1.55}
 @media(max-width:700px){.terms{columns:1}}
 
 /* final cta */
-.fin{background:var(--ink);color:#fff;padding:80px 0;text-align:center}
+.fin{background:
+  radial-gradient(700px 340px at 50% -20%,rgba(255,188,48,.16),transparent 65%),
+  var(--ink);color:#fff;padding:80px 0;text-align:center}
 .fin h2{font-size:clamp(30px,4.6vw,48px);max-width:660px;margin:0 auto}
-.fin p{color:#A9BED2;font-size:17px;max-width:520px;margin:20px auto 32px}
+.fin p{color:#B9B9BF;font-size:17px;max-width:520px;margin:20px auto 32px}
 
 /* footer */
-footer{background:#071324;color:#7E93AA;padding:44px 0;font-size:11.5px;line-height:1.65}
+footer{background:#000;color:#85858A;padding:44px 0;font-size:11.5px;line-height:1.65}
 footer p{margin:0 0 12px;max-width:900px}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
@@ -197,7 +203,7 @@ footer p{margin:0 0 12px;max-width:900px}
 
 <nav>
   <div class="wrap">
-    <div class="brand">TX3 <span>Prime</span></div>
+    <div class="brand">TX3 <span>PRIME</span></div>
     <div class="navlinks">
       <a href="#calc">Run your numbers</a>
       <a href="#tiers">Tiers</a>
@@ -273,7 +279,7 @@ footer p{margin:0 0 12px;max-width:900px}
         <div class="ov"><span class="k">Monthly volume</span><span class="v num" id="oVol">400 lots</span></div>
         <div class="ov"><span class="k">You earn today</span><span class="v num" id="oNow">$3,200</span></div>
         <div class="ov"><span class="k">Base commission at Prime</span><span class="v num" id="oBase">$9,200</span></div>
-        <div class="ov"><span class="k">Monthly volume bonus <span id="oTierName" style="color:var(--cyan)">· Prime</span></span><span class="v num" id="oBonus">$300</span></div>
+        <div class="ov"><span class="k">Monthly volume bonus <span id="oTierName" style="color:var(--gold)">· Prime</span></span><span class="v num" id="oBonus">$300</span></div>
         <div class="ov hi"><span class="k" id="oDeltaLbl">Extra per month at Prime</span><span class="v num" id="oDelta">+$6,300</span></div>
         <p class="calc-note">Illustrative only. Actual earnings depend on your clients' real trading activity. Volume bonus shown is the band your monthly volume qualifies for; bonuses are paid on genuine client volume and re-qualify each month.</p>
       </div>
@@ -417,10 +423,10 @@ footer p{margin:0 0 12px;max-width:900px}
 
 <footer>
   <div class="wrap">
-    <p><strong style="color:#A9BED2">Risk disclosure.</strong> TX3 Markets Global (PTY) LTD is an Authorised Financial Services Provider licensed and regulated by the Financial Sector Conduct Authority (FSCA) in South Africa (FSP No. 53180). Client accounts are onboarded through TX3 Markets Global LTD, incorporated in Saint Lucia (Reg. No. 2023-00449), also licensed as an International Brokerage and Clearing House by the Mwali International Services Authority of the Union of the Comoros (Licence No. BFX2025154).</p>
+    <p><strong style="color:#B9B9BF">Risk disclosure.</strong> TX3 Markets Global (PTY) LTD is an Authorised Financial Services Provider licensed and regulated by the Financial Sector Conduct Authority (FSCA) in South Africa (FSP No. 53180). Client accounts are onboarded through TX3 Markets Global LTD, incorporated in Saint Lucia (Reg. No. 2023-00449), also licensed as an International Brokerage and Clearing House by the Mwali International Services Authority of the Union of the Comoros (Licence No. BFX2025154).</p>
     <p>Trading leveraged products such as Forex and Contracts for Difference carries a high level of risk to your capital and may not be suitable for all investors. Past performance is not indicative of future results. Assess your objectives, experience and risk tolerance before trading, and seek independent advice if necessary.</p>
     <p>All commission rates, bonus figures and calculator outputs shown on this page are illustrative and subject to the TX3 Markets partner terms. Partner earnings depend on genuine client trading activity. TX3 Markets does not provide services to residents of certain restricted jurisdictions.</p>
-    <p style="color:#5D7590">© 2026 TX3 Markets. All rights reserved.</p>
+    <p style="color:#5A5A5E">© 2026 TX3 Markets. All rights reserved.</p>
   </div>
 </footer>
 
@@ -465,7 +471,7 @@ footer p{margin:0 0 12px;max-width:900px}
     $('oTierName').textContent = tname ? '· ' + tname : '';
     var d = $('oDelta');
     d.textContent = (delta >= 0 ? '+' : '−') + money(Math.abs(delta));
-    d.style.color = delta >= 0 ? 'var(--green)' : '#F0A6A6';
+    d.style.color = delta >= 0 ? 'var(--gold)' : '#F0A6A6';
     $('oDeltaLbl').textContent = delta >= 0 ? 'Extra per month at Prime' : 'Difference per month at Prime';
   }
 
