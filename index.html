@@ -127,6 +127,32 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
   html.js .rev-kids>*:nth-child(4){transition-delay:.21s}
   html.js .rev-kids>*:nth-child(5){transition-delay:.28s}
   html.js .rev-kids>*:nth-child(6){transition-delay:.35s}
+
+  /* tier rows cascade in rather than the table landing as one slab */
+  html.js .ladder.rev{transform:none}
+  html.js .ladder.rev .lbody .lrow{opacity:0;transform:translateY(12px);
+    transition:opacity .5s ease,transform .5s ease,background .15s}
+  html.js .ladder.rev.in .lbody .lrow{opacity:1;transform:none}
+  html.js .ladder.rev.in .lbody .lrow:nth-child(1){transition-delay:.04s}
+  html.js .ladder.rev.in .lbody .lrow:nth-child(2){transition-delay:.10s}
+  html.js .ladder.rev.in .lbody .lrow:nth-child(3){transition-delay:.16s}
+  html.js .ladder.rev.in .lbody .lrow:nth-child(4){transition-delay:.22s}
+  html.js .ladder.rev.in .lbody .lrow:nth-child(5){transition-delay:.28s}
+  html.js .ladder.rev.in .lbody .lrow:nth-child(6){transition-delay:.34s}
+  html.js .ladder.rev.in .lbody .lrow:nth-child(7){transition-delay:.40s}
+  html.js .ladder.rev.in .lbody .lrow:nth-child(8){transition-delay:.46s}
+  html.js .ladder.rev.in .lbody .lrow:nth-child(9){transition-delay:.52s}
+
+  /* light sweeps across the gold button on hover */
+  .btn-p{position:relative;overflow:hidden}
+  .btn-p:after{content:"";position:absolute;top:0;bottom:0;left:-70%;width:45%;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);
+    transform:skewX(-18deg);opacity:0;pointer-events:none}
+  .btn-p:hover:after{animation:sheen .65s ease}
+  @keyframes sheen{
+    0%{left:-70%;opacity:1}
+    100%{left:125%;opacity:0}
+  }
 }
 
 /* generic section */
@@ -674,6 +700,35 @@ footer p{margin:0 0 12px;max-width:900px}
 
 <script>
 document.documentElement.classList.add('js');
+
+// shared: tween a number to its new value so results feel counted, not swapped
+var REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function animNum(el, to, render, useHtml){
+  var set = function(v){
+    if (useHtml) el.innerHTML = render(v); else el.textContent = render(v);
+  };
+  if (REDUCED || typeof el._v !== 'number' || el._v === to){
+    if (el._raf) cancelAnimationFrame(el._raf);
+    el._v = to; set(to); return;
+  }
+  if (el._raf) cancelAnimationFrame(el._raf);
+  var from = el._v, start = null, dur = 420;
+  el._raf = requestAnimationFrame(function step(ts){
+    if (start === null) start = ts;
+    var p = Math.min(1, (ts - start) / dur);
+    var e = 1 - Math.pow(1 - p, 3);
+    var v = from + (to - from) * e;
+    el._v = v; set(v);
+    if (p < 1) el._raf = requestAnimationFrame(step);
+    else { el._v = to; set(to); el._raf = null; }
+  });
+}
+// for cells that sometimes show text instead of a number
+function setCell(el, text){
+  if (el._raf) cancelAnimationFrame(el._raf);
+  el._raf = null; el._v = null; el.textContent = text;
+}
+
 (function(){
   // don't let a page scroll over an input silently change its value
   document.querySelectorAll('input[type=number],select').forEach(function(el){
@@ -764,13 +819,13 @@ document.documentElement.classList.add('js');
     var base = vol * BASE;
     var delta = (base + bonus) - now;
 
-    $('oVol').textContent = Math.round(vol).toLocaleString('en-US') + ' lots';
-    $('oNow').textContent = money(now);
-    $('oBase').textContent = money(base);
-    $('oBonus').textContent = bonus > 0 ? money(bonus) : '—';
+    animNum($('oVol'), vol, function(v){ return Math.round(v).toLocaleString('en-US') + ' lots'; });
+    animNum($('oNow'), now, money);
+    animNum($('oBase'), base, money);
+    if (bonus > 0) animNum($('oBonus'), bonus, money); else setCell($('oBonus'), '—');
     $('oTierName').textContent = tname ? '· ' + tname : '';
     var d = $('oDelta');
-    d.textContent = (delta >= 0 ? '+' : '−') + money(Math.abs(delta));
+    animNum(d, delta, function(v){ return (v >= 0 ? '+' : '−') + money(Math.abs(v)); });
     d.style.color = delta >= 0 ? 'var(--gold)' : '#F0A6A6';
     $('oDeltaLbl').textContent = delta >= 0 ? 'Extra per month at Prime' : 'Difference per month at Prime';
   }
@@ -835,13 +890,15 @@ document.documentElement.classList.add('js');
     // Prime pays on every lot traded, qualified for CPA or not
     var primeMonthly = want * lots * PRIME_RATE;
 
-    $('cQual').textContent = qual.toLocaleString('en-US');
+    animNum($('cQual'), qual, function(v){ return Math.round(v).toLocaleString('en-US'); });
     $('cRate').textContent = meetsMin ? '· ' + money(payBand.pay) + ' each' : '';
-    $('cPayouts').textContent = money(payouts);
-    $('cFtd').textContent = ftdCustom ? 'Custom' : (ftdBonus > 0 ? money(ftdBonus) : '—');
+    animNum($('cPayouts'), payouts, money);
+    if (ftdCustom) setCell($('cFtd'), 'Custom');
+    else if (ftdBonus > 0) animNum($('cFtd'), ftdBonus, money);
+    else setCell($('cFtd'), '—');
     $('cFtdName').textContent = ftdName ? '· ' + ftdName : '';
-    $('cTotal').textContent = ftdCustom ? money(total) + '+' : money(total);
-    $('cPrime').innerHTML = money(primeMonthly) + '<small>/mo</small>';
+    animNum($('cTotal'), total, function(v){ return money(v) + (ftdCustom ? '+' : ''); });
+    animNum($('cPrime'), primeMonthly, function(v){ return money(v) + '<small>/mo</small>'; }, true);
     $('cMinLots').textContent = 'Client must trade ' + band.min +
       (band.min === 1 ? ' lot' : ' lots') + ' within 30 days for this band\'s ' +
       money(band.pay) + '.';
